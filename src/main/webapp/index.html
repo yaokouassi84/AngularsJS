@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="Application">
+<head>
+<meta charset="utf-8">
+<title>Application</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="monControleur">
+		
+		<p>{{user.name}} {{user.prenom}}</p>
+		<div ng-controller="MainControleur">
+			<p>{{titre}}</p>
+			<div ng-controller="EnfantControleur">
+				{{pageTitre}}
+				<p>{{$parent.titre}}</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		//var user = {name:"YAO",prenom:"Kouassi"}
+		function monControleur($scope){
+			$scope.user = {name:"YAO",prenom:"Kouassi"};
+		}
+		
+		//var user = {name:"YAO",prenom:"Kouassi"}
+		function EnfantControleur($scope){
+			$scope.pageTitre = "Gestion Angular";
+		}
+		
+		function MainControleur($scope){
+			$scope.titre= "AngularJs";
+		}
+		
+		angular.module("Application",[])
+		.controller("monControleur",monControleur)
+		.controller("EnfantControleur",EnfantControleur)
+		.controller("MainControleur",MainControleur);
+	</script>
+	
+	
+</body>
+</html>
